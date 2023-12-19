@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <title>Index</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="script.js" defer></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.1.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets> 
+        <a-asset-item id="penguin" src="assets/penguin/scene.gltf"></a-asset-item>
+        <a-asset-item id="compass" src="assets/compass/scene.gltf"></a-asset-item>
+      </a-assets>
+      <a-sky
+        position="0 0 0"
+        id="sky"
+        src="https://cdn.glitch.global/fdfcd7f5-9d96-45bf-840d-b0bd1e91b766/170311a_Wordie-House_275HDR-Pano.jpg?v=1696304344095"
+      ></a-sky>
+
+      <!-- сцена 1 -->
+
+      <!-- стартовая панель -->
+      <a-plane
+        class="first_scene"
+        height="6"
+        width="8"
+        position="0 6 -10"
+        rotation="0 0 0"
+        src="assets/start-info.png"
+      ></a-plane>
+
+      <!-- дверь -->
+      <a-plane
+        class="first_scene clickable"
+        color="red"
+        height="8"
+        width="4"
+        position="11.7 2.1 1.7"
+        rotation="0 -160 0"
+        src="assets/door-clossed1.png"
+        open-the-door
+      ></a-plane>
+
+      <!-- информационная табличка -->
+      <a-plane
+        class="first_scene clickable"
+        src="assets/info.png"
+        height="3"
+        width="3"
+        position="8 4.5 3"
+        rotation="0 -160 0"
+        show-info
+      ></a-plane>
+
+      <!-- информационная панель -->
+      <a-plane
+        class="first_scene"
+        id="info"
+        position="3 2.5 1.5"
+        height="0"
+        width="0"
+        rotation="0 -115 0"
+        src="assets/info2.png"
+      ></a-plane>
+      
+      <!-- пингвин -->
+      <a-entity 
+        class="first_scene"
+        id="penguin_model"
+        gltf-model="#penguin" 
+        scale="0.005 0.005 0.005" 
+        position="0 -3 -9" 
+        animation-mixer="clip: Walk"
+        animation="property: position; from: 0 -3 -9; to: -5 -3 -6;dir: alternate; dur: 10000; easing: linear; loop: true"
+        animation__rotationForward="property: rotation; to: 0 0 0;dur: 1000; easing: linear; startEvents: rotateForward"
+        animation__rotationBackward="property: rotation; to: 0 -180 0;dur: 1000; easing: linear; startEvents: rotateBackward"
+        rotate-penguin
+      ></a-entity>
+
+      <!-- сцена 2 -->
+
+      <!-- компас -->
+      <a-entity 
+        id="compass_model"
+        gltf-model="#compass" 
+        scale="0 0 0" 
+        position="-0.1 1.35 202"
+        rotation="0 90 0"
+        spin-compass
+        animation="property: rotation; from: 0 90 0; to: 0 270 180; dur: 2000; easing: linear; loop: false; startEvents: buttonPressed"
+      ></a-entity>
+
+      <!-- информационная панель -->
+      <a-plane
+        class="second_scene"
+        height="0.6"
+        width="1.2"
+        position="1 1.6 202"
+        rotation="-180 30 180"
+        src="assets/button-info.png"
+      ></a-plane>
+
+      <!-- крассная кнопка -->
+      <a-cylinder
+        class="second_scene clickable"
+        id="button"
+        color="red"
+        position="-0.95 1.35 202"
+        height="0.05"
+        radius="0.05"
+        rotation="0 90 90"
+        transparent=true
+        visible="false"
+      ></a-cylinder>
+
+      <!-- табличка 1 -->
+      <a-plane
+        class="clickable"
+        id="plate1"
+        position="2 1.8 200"
+        height="0.65"
+        width="0.4"
+        rotation="0 -90 -92"
+        visible="false"
+      ></a-plane>
+      <a-plane
+        id="panel1"
+        position="3 1.8 200"
+        height="0"
+        width="0"
+        rotation="0 -90 0"
+        src="assets/panel1.png"
+      ></a-plane>
+
+      <!-- табличка 2 -->
+      <a-plane
+        class="clickable"
+        id="plate2"
+        position="2 1.3 199.1"
+        height="1.3"
+        width="0.8"
+        rotation="0 -90 0"
+        visible="false"
+      ></a-plane>
+      <a-plane
+        id="panel2"
+        position="3 1.3 199.1"
+        height="0"
+        width="0"
+        rotation="0 -70 0"
+        src="assets/panel2.png"
+      ></a-plane>
+
+      <!-- табличка 3 -->
+      <a-plane
+        class="clickable"
+        id="plate3"
+        position="1.1 1.48 198.5"
+        height="0.4"
+        width="0.7"
+        rotation="0 0 -90"
+        visible="false"
+      ></a-plane>
+      <a-plane
+        id="panel3"
+        position="1.7 1.48 198.6"
+        height="0"
+        width="0"
+        rotation="0 -35 0"
+        src="assets/panel3.png"
+      ></a-plane>
+
+      <!-- табличка выхода -->
+      <a-plane
+        class="second_scene clickable"
+        id="exit-button"
+        position="-2.5 1.28 202.5"
+        height="1"
+        width="1.8"
+        rotation="0 145 0"
+        src="assets/outside-info.png"
+        visible="false"
+        exit
+      ></a-plane>
+      
+      <a-camera id="camera" position="0 1.6 0">
+        <a-cursor id="cursor" color="black"></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
